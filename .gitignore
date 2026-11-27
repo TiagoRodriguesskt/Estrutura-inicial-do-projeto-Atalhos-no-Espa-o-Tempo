@@ -1,8 +1,8 @@
 # --- Artigos de terceiros (direitos autorais: não versionar) ---
-artigos/*/artigo.pdf
-artigos/*/*.pdf
-!artigos/*/fichamento.pdf
-!artigos/*/explicacao.pdf
+**/artigos/*/artigo.pdf
+**/artigos/*/*.pdf
+!**/artigos/*/fichamento.pdf
+!**/artigos/*/explicacao.pdf
 
 # --- LaTeX (arquivos gerados na compilação) ---
 *.aux
