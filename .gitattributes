@@ -1,0 +1,8 @@
+* text=auto eol=lf
+*.pdf binary
+*.png binary
+*.jpg binary
+*.tex text diff=tex
+*.bib text
+*.py text diff=python
+*.ipynb text

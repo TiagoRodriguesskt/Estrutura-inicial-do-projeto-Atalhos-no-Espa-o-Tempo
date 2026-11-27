@@ -1,0 +1,13 @@
+# Ano 1: Python científico
+numpy
+scipy
+matplotlib
+jupyter
+
+# Ano 2: cálculo simbólico e visualização 3D
+sympy
+plotly
+einsteinpy
+
+# Ano 5: diferenciação automática (instale quando chegar lá)
+# jax
