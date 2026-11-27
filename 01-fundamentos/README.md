@@ -11,5 +11,10 @@
 
 ## Pastas
 
-- `fichamentos/`: uma página em LaTeX por artigo lido
-- `codigo/`: scripts e notebooks do ano
+- `artigos/`: um artigo por pasta, cada um com `README.md`, `fichamento.tex`, `referencia.bib` e `codigo/` (a simulação do artigo)
+- `script-do-livro/`: projetos em Python que vêm dos livros-texto do ano
+- `notas-livros/`: resumos e exercícios dos livros-texto
+
+## Artigos deste ano
+
+- [`1988-morris-thorne`](artigos/1988-morris-thorne/)

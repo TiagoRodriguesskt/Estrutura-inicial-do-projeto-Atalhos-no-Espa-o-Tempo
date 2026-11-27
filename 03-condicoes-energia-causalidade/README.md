@@ -12,5 +12,16 @@
 
 ## Pastas
 
-- `fichamentos/`: uma página em LaTeX por artigo lido
-- `codigo/`: scripts e notebooks do ano
+- `artigos/`: um artigo por pasta, cada um com `README.md`, `fichamento.tex`, `referencia.bib` e `codigo/` (a simulação do artigo)
+- `script-do-livro/`: projetos em Python que vêm dos livros-texto do ano
+- `notas-livros/`: resumos e exercícios dos livros-texto
+
+## Artigos deste ano
+
+- [`1992-hawking`](artigos/1992-hawking/)
+- [`1996-everett`](artigos/1996-everett/)
+- [`1997-everett-roman`](artigos/1997-everett-roman/)
+- [`1998-krasnikov`](artigos/1998-krasnikov/)
+- [`1998-olum`](artigos/1998-olum/)
+- [`1999-van-den-broeck`](artigos/1999-van-den-broeck/)
+- [`2002-natario`](artigos/2002-natario/)

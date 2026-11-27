@@ -44,3 +44,9 @@ Thumbs.db
 .vscode/
 .idea/
 *.swp
+
+# --- Arquivos pessoais (ficam só no seu computador) ---
+plano-de-estudo.pdf
+privado/
+**/privado/
+*.privado.*

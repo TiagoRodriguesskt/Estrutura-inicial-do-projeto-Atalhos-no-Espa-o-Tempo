@@ -15,20 +15,23 @@ O projeto acompanha a literatura na ordem em que ela foi construída: das métri
 ```
 .
 ├── README.md
+├── ARTIGOS.md                  # índice dos 24 artigos, com o ano de cada um
 ├── LICENSE                     # MIT (código)
 ├── pyproject.toml              # dependências Python (um ambiente para todo o projeto)
 ├── uv.lock                     # versões exatas instaladas
 ├── referencias.bib             # bibliografia completa (24 referências)
-├── plano-de-estudo.pdf         # plano de 6 anos
 ├── o-que-estudar.pdf           # pré-requisitos de matemática, física e computação
-├── artigos/                    # uma pasta por artigo
-│   ├── README.md               # índice dos artigos
-│   └── 1994-alcubierre/
-│       ├── README.md           # referência, links, status de leitura
-│       ├── fichamento.tex      # resumo em LaTeX
-│       ├── referencia.bib
-│       └── codigo/             # reprodução dos resultados
-├── 01-fundamentos/             # notas e projetos de cada ano do plano
+├── 01-fundamentos/             # uma pasta por ano de estudo
+│   ├── README.md               # metas, livros e marco do ano
+│   ├── script-do-livro/        # projetos em Python dos livros-texto
+│   ├── notas-livros/           # resumos dos livros-texto
+│   └── artigos/
+│       └── 1988-morris-thorne/
+│           ├── README.md       # referência, links, status de leitura
+│           ├── explicacao.pdf  # explicação detalhada do artigo
+│           ├── fichamento.tex  # seu resumo em LaTeX
+│           ├── referencia.bib
+│           └── codigo/         # simulação do artigo
 ├── 02-relatividade-geral/
 ├── 03-condicoes-energia-causalidade/
 ├── 04-energia-negativa-quantica/
@@ -38,33 +41,24 @@ O projeto acompanha a literatura na ordem em que ela foi construída: das métri
 
 ## Como usar
 
-**Ambiente Python (uma vez só, na raiz)**
-
-O projeto usa o [uv](https://docs.astral.sh/uv/). Existe **um único ambiente** na raiz, compartilhado por todas as simulações: pygame, NumPy, SciPy, Matplotlib e SymPy são baixados uma vez só.
+**Ambiente Python**
 
 ```bash
-uv sync                  # cria .venv/ na raiz e instala tudo
+python -m venv .venv
+source .venv/bin/activate        # Windows: .venv\Scripts\activate
+pip install -r requirements.txt
 ```
-
-Depois, rode qualquer simulação de dentro da pasta dela; o uv encontra sozinho o ambiente da raiz:
-
-```bash
-cd artigos/1988-morris-thorne/codigo
-uv run main.py
-```
-
-Para adicionar uma biblioteca nova ao projeto inteiro: `uv add nome-da-biblioteca` (na raiz).
 
 **Compilar um fichamento**
 
 ```bash
-cd artigos/1994-alcubierre
+cd 02-relatividade-geral/artigos/1994-alcubierre
 pdflatex fichamento.tex && bibtex fichamento && pdflatex fichamento.tex && pdflatex fichamento.tex
 ```
 
 ## Artigos (PDFs)
 
-Os PDFs dos artigos **não** fazem parte do repositório, porque são obras de terceiros. Cada pasta em `artigos/` traz os links do arXiv e do DOI; baixe e salve como `artigo.pdf` (o `.gitignore` já impede que eles sejam enviados).
+Os PDFs dos artigos **não** fazem parte do repositório, porque são obras de terceiros. Cada pasta de artigo traz os links do arXiv e do DOI; baixe e salve como `artigo.pdf` (o `.gitignore` já impede que eles sejam enviados).
 
 ## Progresso
 

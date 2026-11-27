@@ -11,5 +11,18 @@
 
 ## Pastas
 
-- `fichamentos/`: uma página em LaTeX por artigo lido
-- `codigo/`: scripts e notebooks do ano
+- `artigos/`: um artigo por pasta, cada um com `README.md`, `fichamento.tex`, `referencia.bib` e `codigo/` (a simulação do artigo)
+- `script-do-livro/`: projetos em Python que vêm dos livros-texto do ano
+- `notas-livros/`: resumos e exercícios dos livros-texto
+
+## Artigos deste ano
+
+- [`2012-mcmonigal`](artigos/2012-mcmonigal/)
+- [`2014-lee-cleaver`](artigos/2014-lee-cleaver/)
+- [`2021-bobrick-martire`](artigos/2021-bobrick-martire/)
+- [`2021-lentz`](artigos/2021-lentz/)
+- [`2022-santiago`](artigos/2022-santiago/)
+- [`2024-clough`](artigos/2024-clough/)
+- [`2024-fuchs`](artigos/2024-fuchs/)
+- [`2026-barzegar`](artigos/2026-barzegar/)
+- [`2026-le`](artigos/2026-le/)
