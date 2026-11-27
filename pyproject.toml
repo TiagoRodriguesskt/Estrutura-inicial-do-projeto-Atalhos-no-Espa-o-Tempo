@@ -1,0 +1,19 @@
+[project]
+name = "atalhos-no-espaco-tempo"
+version = "0.1.0"
+description = "Estudo de métricas de dobra, buracos de minhoca e condições de energia, com simulações em Python"
+readme = "README.md"
+requires-python = ">=3.10"
+license = { text = "MIT" }
+authors = [{ name = "Tiago Rodrigues" }]
+dependencies = [
+    "pygame>=2.6",       # simulações interativas
+    "numpy>=1.26",       # cálculo numérico
+    "scipy>=1.11",       # EDOs e integrais (solve_ivp, quad)
+    "matplotlib>=3.8",   # gráficos
+    "sympy>=1.12",       # cálculo simbólico de tensores
+]
+
+# Ainda não é um pacote instalável: só um ambiente compartilhado.
+[tool.uv]
+package = false

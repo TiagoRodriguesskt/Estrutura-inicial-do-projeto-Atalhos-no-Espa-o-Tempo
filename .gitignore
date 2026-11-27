@@ -2,6 +2,7 @@
 artigos/*/artigo.pdf
 artigos/*/*.pdf
 !artigos/*/fichamento.pdf
+!artigos/*/explicacao.pdf
 
 # --- LaTeX (arquivos gerados na compilação) ---
 *.aux

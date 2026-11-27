@@ -1,0 +1,445 @@
+\documentclass[11pt,a4paper]{article}
+% Compile com XeLaTeX:  xelatex explicacao.tex  (duas vezes, para o sumário)
+\usepackage{fontspec}
+
+\usepackage{amsmath,amssymb}
+\usepackage[margin=2.3cm]{geometry}
+\usepackage{booktabs,tabularx,array}
+\usepackage{enumitem}
+\usepackage[hidelinks]{hyperref}
+\usepackage{xcolor}
+\usepackage{titlesec}
+\definecolor{azul}{HTML}{1F3A5F}
+\titleformat{\section}{\Large\bfseries\color{azul}}{\thesection.}{0.6em}{}
+\setlength{\parskip}{0.55em}
+\setlength{\parindent}{0pt}
+\newcolumntype{Y}{>{\raggedright\arraybackslash}X}
+\renewcommand{\arraystretch}{1.25}
+
+\title{\color{azul}\textbf{Morris \& Thorne (1988) explicado}\\[0.3em]
+\large Buracos de minhoca atravessáveis}
+\author{Tiago Rodrigues}
+\date{27 de novembro de 2026}
+
+\renewcommand{\contentsname}{Sumário}
+
+\begin{document}
+\maketitle
+
+\begin{center}
+\small Referência: M. S. Morris e K. S. Thorne, \emph{Wormholes in spacetime and their use for interstellar travel:
+A tool for teaching general relativity}, Am. J. Phys. \textbf{56}, 395--412 (1988).
+\end{center}
+
+\tableofcontents
+\newpage
+
+% ---------------------------------------------------------------------------
+\section{Contexto: por que este artigo existe}
+
+\textbf{A ideia central em uma frase:} Morris e Thorne mostraram que a Relatividade Geral permite, em princípio,
+um túnel no espaço-tempo que um ser humano atravessa nos dois sentidos, e calcularam exatamente o preço: na boca do
+túnel precisa existir \textbf{matéria com tensão maior que a sua densidade de energia}, a chamada
+\textbf{matéria exótica}.
+
+\textbf{A origem curiosa.} Em 1985, o astrônomo Carl Sagan escrevia o romance \emph{Contato} e queria que a heroína
+viajasse até a estrela Vega de um jeito cientificamente plausível. Ele pediu ajuda a Kip Thorne, especialista em
+Relatividade Geral no Caltech. Sagan tinha pensado em usar um buraco negro, mas Thorne sabia que isso não funciona:
+dentro de um buraco negro existe um horizonte de eventos (não dá para voltar) e uma singularidade (as forças de maré
+destroem qualquer coisa). Thorne e seu aluno Michael Morris resolveram estudar o problema a sério.
+
+\textbf{Por que foi publicado numa revista de ensino.} O artigo saiu no \emph{American Journal of Physics}, uma
+revista para professores. O subtítulo diz tudo: \emph{``uma ferramenta para ensinar Relatividade Geral''}. Os
+autores queriam que estudantes usassem buracos de minhoca como exercício para aprender métrica, curvatura, equações
+de Einstein e tensor energia-momento. Por isso o artigo é um ótimo primeiro artigo para você.
+
+\textbf{O truque de método: engenharia reversa.} Normalmente, em Relatividade Geral, você parte da matéria (uma
+estrela, por exemplo) e resolve as equações de Einstein para descobrir a geometria do espaço-tempo:
+\begin{equation*}
+\underbrace{T_{\mu\nu}}_{\text{matéria}} \;\longrightarrow\; G_{\mu\nu} = \frac{8\pi G}{c^4}\, T_{\mu\nu}
+\;\longrightarrow\; \underbrace{g_{\mu\nu}}_{\text{geometria}}
+\end{equation*}
+Morris e Thorne fizeram o caminho inverso. Primeiro escolheram a geometria que um viajante gostaria de ter (um túnel
+confortável). Depois calcularam a curvatura $G_{\mu\nu}$ dessa geometria e, pelas equações de Einstein, leram qual
+matéria $T_{\mu\nu}$ seria necessária para criá-la. A pergunta deixa de ser ``o que a natureza faz?'' e passa a ser
+``o que a natureza teria que fornecer?''. Essa mesma estratégia é usada por Alcubierre em 1994 para a métrica de
+dobra, então entender este artigo prepara você para o próximo.
+
+% ---------------------------------------------------------------------------
+\section{A lista de desejos do viajante}
+
+Antes de escrever qualquer equação, os autores listam o que o túnel precisa cumprir. Cada requisito vira, mais
+adiante, uma condição matemática. Vale ler a lista como um ``caderno de encargos'' de engenharia.
+
+\begin{center}
+\small
+\begin{tabularx}{\linewidth}{>{\bfseries\raggedright\arraybackslash}p{3.4cm} Y Y}
+\toprule
+Requisito & O que significa & Vira qual condição matemática \\
+\midrule
+Esférico e estático & A forma não muda com o tempo e é igual em todas as direções & Métrica depende só de $r$, sem termos cruzados com $t$ \\
+Obedece à Relatividade Geral & Nada de física inventada & Equações de Einstein $G_{\mu\nu} = 8\pi G\,T_{\mu\nu}/c^4$ \\
+Tem uma garganta ligando duas regiões & Um túnel entre dois lugares do universo (ou dois universos) & Função de forma $b(r)$ com $b(b_0)=b_0$ e abertura da garganta \\
+Sem horizonte de eventos & Dá para ir e voltar & $\Phi(r)$ finito em todo lugar \\
+Longe da garganta, espaço normal & As bocas ficam em regiões comuns do espaço & $b/r \to 0$ e $\Phi \to 0$ quando $r\to\infty$ \\
+Forças de maré suportáveis & O corpo do viajante não é esticado nem esmagado & Diferença de aceleração entre cabeça e pés $\le 1\,g$ \\
+Aceleração suportável & A nave não precisa de motores absurdos & Aceleração total $\le 1\,g$ da Terra \\
+Viagem em tempo razoável & Menos de cerca de 1 ano, para o viajante e para quem fica & Integrais do tempo próprio finitas e pequenas \\
+Matéria fisicamente razoável & A fonte da curvatura precisa existir na natureza & Condições de energia (é aqui que o problema aparece) \\
+Estável e construível & Pequenas perturbações não destroem o túnel & Deixado em aberto pelo artigo \\
+\bottomrule
+\end{tabularx}
+\end{center}
+
+Os seis primeiros itens são satisfeitos com facilidade, escolhendo bem as duas funções da métrica. Os de conforto do
+viajante também. O item ``matéria fisicamente razoável'' é o que \textbf{não} fecha, e é a grande descoberta do artigo.
+
+% ---------------------------------------------------------------------------
+\section{A métrica: a ``régua'' do túnel}
+
+A métrica é a fórmula que diz a distância (no espaço e no tempo) entre dois eventos vizinhos. É a generalização do
+teorema de Pitágoras para o espaço-tempo curvo. A métrica de Morris-Thorne é:
+\begin{equation}
+ds^2 = -e^{2\Phi(r)}\,c^2\,dt^2 \;+\; \frac{dr^2}{1 - b(r)/r} \;+\; r^2\left(d\theta^2 + \sin^2\theta\,d\phi^2\right)
+\label{eq:metrica}
+\end{equation}
+Compare com o espaço-tempo plano em coordenadas esféricas, que é o caso $\Phi = 0$ e $b = 0$:
+\begin{equation*}
+ds^2 = -c^2\,dt^2 + dr^2 + r^2\left(d\theta^2 + \sin^2\theta\,d\phi^2\right)
+\end{equation*}
+Toda a ``física do túnel'' está em duas funções que o engenheiro escolhe livremente.
+
+\textbf{$\Phi(r)$, a função de desvio para o vermelho.} Ela multiplica o termo do tempo, então controla \textbf{o ritmo
+dos relógios}. Um relógio parado no raio $r$ marca o tempo próprio $d\tau = e^{\Phi}dt$. Onde $\Phi$ é mais negativo,
+o tempo passa mais devagar e a luz que sai dali chega ``avermelhada''. Se $e^{\Phi}$ chegasse a zero em algum raio, o
+tempo pararia ali: isso é um \textbf{horizonte de eventos}. Por isso o requisito ``sem horizonte'' vira
+simplesmente: $\Phi$ tem que ser finito em todo lugar. $\Phi$ também controla a gravidade sentida por quem está parado:
+a aceleração necessária para ficar imóvel é proporcional a $d\Phi/dr$.
+
+\textbf{$b(r)$, a função de forma.} Ela aparece no termo radial e controla \textbf{a forma espacial do túnel}. O ponto
+chave: aqui $r$ \textbf{não é a distância até o centro}. Ele é definido pela circunferência: uma esfera de ``raio''
+$r$ tem área $4\pi r^2$. A distância que uma régua mede de verdade na direção radial é a \textbf{distância própria} $l$:
+\begin{equation}
+l(r) = \pm \int_{b_0}^{r} \frac{dr'}{\sqrt{1 - b(r')/r'}}
+\end{equation}
+
+\textbf{A garganta.} É o ponto onde o túnel é mais estreito, no raio $b_0$ em que $b(b_0) = b_0$. Ali o termo
+$1 - b/r$ vale zero, e $dr$ deixa de ser uma boa coordenada (a métrica parece ``explodir''). Mas isso é só um defeito
+da coordenada $r$, não da geometria: em termos de $l$, tudo é suave. O sinal $\pm$ em $l$ mostra o que acontece.
+Quando você anda em direção à garganta, $r$ diminui até $b_0$; ao atravessar, $r$ volta a \textbf{aumentar}, mas você
+está do outro lado ($l < 0$). A coordenada $r$ não distingue os dois lados; $l$ distingue. Essa é a primeira grande
+lição: \textbf{coordenadas são rótulos, e um rótulo ruim pode criar singularidades que não existem}.
+
+% ---------------------------------------------------------------------------
+\section{Diagrama de imersão: como ``ver'' o túnel}
+
+Não dá para desenhar um espaço curvo de 3 dimensões. O truque clássico, usado no artigo, é olhar só uma fatia: um
+instante fixo ($t$ constante) e o plano do equador ($\theta = \pi/2$). Sobra uma superfície de 2 dimensões:
+\begin{equation*}
+ds^2 = \frac{dr^2}{1 - b(r)/r} + r^2\,d\phi^2
+\end{equation*}
+Agora a pergunta: que superfície no espaço comum de 3 dimensões tem exatamente essa métrica? Use coordenadas
+cilíndricas $(r, \phi, z)$ e procure uma superfície de revolução $z(r)$. No espaço comum, a distância sobre ela é:
+\begin{equation*}
+ds^2 = dz^2 + dr^2 + r^2 d\phi^2 = \left[1 + \left(\frac{dz}{dr}\right)^2\right] dr^2 + r^2\,d\phi^2
+\end{equation*}
+Igualando os termos de $dr^2$ das duas expressões:
+\begin{equation}
+1 + \left(\frac{dz}{dr}\right)^2 = \frac{1}{1 - b/r} \quad\Longrightarrow\quad
+\frac{dz}{dr} = \pm\left(\frac{r}{b(r)} - 1\right)^{-1/2}
+\end{equation}
+Integrando, você obtém o perfil do túnel. Na garganta ($r = b_0$), $dz/dr$ é infinito: a superfície fica vertical.
+Longe dela, $b/r \to 0$, $dz/dr \to 0$ e a superfície fica plana. O resultado é a imagem famosa de um \textbf{funil
+duplo}: dois planos (as duas regiões do universo) ligados por um gargalo.
+
+\textbf{A condição de abertura (\emph{flaring out}).} Para ser uma garganta de verdade, o túnel tem que se
+\textbf{abrir} dos dois lados, ou seja, $r(z)$ tem um mínimo na garganta. Isso exige $d^2r/dz^2 > 0$. Derivando
+$dr/dz = \pm(r/b - 1)^{1/2}$ mais uma vez:
+\begin{equation}
+\frac{d^2 r}{dz^2} = \frac{b - b'\,r}{2\,b^2} > 0 \quad\Longrightarrow\quad b'(b_0) < 1 \text{ na garganta}
+\label{eq:abertura}
+\end{equation}
+onde $b' = db/dr$. Guarde essa desigualdade: ela parece inocente, uma condição puramente geométrica sobre a forma do
+funil. Na seção~\ref{sec:exotica} você vai ver que ela é exatamente o que obriga a existência de matéria exótica.
+
+\textbf{Cuidado com a imagem.} O funil desenhado no espaço comum é só uma ajuda visual. O espaço ``de fora'' onde ele
+está desenhado não existe fisicamente; o viajante só tem acesso à superfície. A simulação em Python desenha exatamente
+esse funil.
+
+% ---------------------------------------------------------------------------
+\section{Equações de Einstein: que matéria é necessária?}
+
+Agora vem a engenharia reversa. Com a métrica escolhida, calcula-se a curvatura (Christoffel $\to$ Riemann $\to$
+Ricci $\to$ tensor de Einstein $G_{\mu\nu}$). Essas contas são longas, mas mecânicas; é exatamente o que o seu
+Projeto~3 (calculadora de tensores com SymPy) vai fazer. Depois, as equações de Einstein dizem qual matéria precisa
+estar ali:
+\begin{equation*}
+G_{\hat\mu\hat\nu} = \frac{8\pi G}{c^4}\,T_{\hat\mu\hat\nu}
+\end{equation*}
+
+\textbf{O truque do referencial próprio.} Os chapéus nos índices indicam que as contas são feitas no referencial
+ortonormal de um observador \textbf{parado} em $r$ (uma estação espacial fixa perto do túnel). A vantagem: nesse
+referencial cada componente do tensor tem significado físico direto, o que essa estação mediria com seus
+instrumentos. O tensor energia-momento fica diagonal:
+\begin{equation*}
+T_{\hat\mu\hat\nu} = \begin{pmatrix} \rho c^2 & 0 & 0 & 0 \\ 0 & -\tau & 0 & 0 \\ 0 & 0 & p & 0 \\ 0 & 0 & 0 & p \end{pmatrix}
+\end{equation*}
+\begin{itemize}[nosep]
+\item $\rho(r)$: densidade de massa-energia, a ``quantidade de coisa'' por volume;
+\item $\tau(r)$: \textbf{tensão radial}, que puxa ao longo da direção do túnel, como um elástico esticado (é uma
+pressão negativa: $p_{\text{radial}} = -\tau$);
+\item $p(r)$: pressão lateral, nas direções perpendiculares ao túnel.
+\end{itemize}
+
+Resolvendo as equações de Einstein, os autores obtêm as três grandezas em termos das funções escolhidas
+($b' = db/dr$, $\Phi' = d\Phi/dr$):
+\begin{align}
+\rho(r) &= \frac{c^2}{8\pi G}\,\frac{b'}{r^2} \label{eq:rho}\\[0.3em]
+\tau(r) &= \frac{c^4}{8\pi G}\,\frac{1}{r^2}\left[\frac{b}{r} - 2\left(r - b\right)\Phi'\right] \label{eq:tau}\\[0.3em]
+p(r) &= \frac{r}{2}\left[\left(\rho c^2 - \tau\right)\Phi' - \tau'\right] - \tau \label{eq:p}
+\end{align}
+
+\textbf{Como ler essas fórmulas.} A densidade $\rho$ depende só de $b'$: quanto mais rápido a forma muda, mais massa é
+necessária. A tensão $\tau$ tem uma parte ligada à forma ($b/r$) e uma ligada ao ritmo dos relógios ($\Phi'$). A
+pressão $p$ não é uma informação nova: ela sai da conservação de energia-momento ($\nabla_\mu T^{\mu\nu} = 0$), que é a
+versão relativística do equilíbrio de forças. Repare no fator $c^4/(8\pi G) \approx 4{,}8\times 10^{42}$\,N: é um número
+gigantesco, e ele é o motivo de qualquer curvatura apreciável exigir quantidades enormes de matéria ou tensão.
+
+% ---------------------------------------------------------------------------
+\section{Matéria exótica: o preço do túnel}
+\label{sec:exotica}
+
+Esta é a descoberta central do artigo. Avalie $\rho$ e $\tau$ \textbf{na garganta}, $r = b_0$. Ali $r - b = 0$, então
+o termo com $\Phi'$ some:
+\begin{equation*}
+\rho_0 c^2 = \frac{c^4}{8\pi G}\,\frac{b'(b_0)}{b_0^2} \qquad\qquad \tau_0 = \frac{c^4}{8\pi G}\,\frac{1}{b_0^2}
+\end{equation*}
+Subtraindo uma da outra:
+\begin{equation}
+\tau_0 - \rho_0 c^2 = \frac{c^4}{8\pi G}\,\frac{1 - b'(b_0)}{b_0^2} \;>\; 0
+\end{equation}
+O sinal é positivo \textbf{por causa da condição de abertura $b'(b_0) < 1$}, equação~\eqref{eq:abertura}. Ou seja: a
+pura exigência geométrica de que o túnel se abra obriga a matéria da garganta a ter \textbf{tensão maior que a
+densidade de energia}, $\tau > \rho c^2$. Os autores chamam isso de \textbf{matéria exótica}. Não importa como você
+escolha $\Phi$ e $b$: se há garganta, há matéria exótica.
+
+\textbf{Por que ``exótica'' significa energia negativa.} Imagine um viajante que passa pela garganta a uma velocidade
+$v$, com fator de Lorentz $\gamma = 1/\sqrt{1 - v^2/c^2}$. Transformando o tensor energia-momento para o referencial
+dele, a densidade de energia que ele mede é:
+\begin{equation}
+\rho' c^2 = \gamma^2\left(\rho c^2 - \frac{v^2}{c^2}\,\tau\right)
+\end{equation}
+Se $\tau > \rho c^2$, basta $v$ ser próximo o suficiente de $c$ para que $\rho' c^2$ fique \textbf{negativo}. Então
+existe um observador que vê densidade de energia negativa. Isso viola a \textbf{condição de energia fraca} (WEC: todo
+observador mede energia $\ge 0$). No limite $v \to c$, o que se testa é a \textbf{condição de energia nula} (NEC), a
+mais fraca de todas:
+\begin{equation}
+T_{\mu\nu}\,k^\mu k^\nu \;\propto\; \rho c^2 - \tau \;<\; 0 \qquad \text{(raio de luz radial na garganta)}
+\end{equation}
+Toda matéria comum conhecida (poeira, gás, estrelas, campos eletromagnéticos) satisfaz a NEC. O túnel a viola. Essa é
+a razão pela qual quase todos os outros 23 artigos do seu \texttt{.bib} existem: eles giram em torno da pergunta
+``essa violação é possível na natureza, e em que quantidade?''.
+
+\textbf{Os números.} O fator $c^4/(8\pi G)$ vale cerca de $4{,}8\times 10^{42}$\,N. Para uma garganta de raio
+$b_0 = 10$\,m (do tamanho de uma casa):
+\begin{equation*}
+\tau_0 = \frac{c^4}{8\pi G\, b_0^2} \approx \frac{4{,}8\times 10^{42}\ \text{N}}{(10\ \text{m})^2}
+\approx 5\times 10^{40}\ \text{Pa} \;=\; 5\times 10^{41}\ \text{dyn/cm}^2
+\end{equation*}
+
+\begin{center}
+\begin{tabular}{lr}
+\toprule
+Comparação & Pressão ou tensão aproximada \\
+\midrule
+Atmosfera da Terra & $10^{5}$ Pa \\
+Resistência do aço à tração & $10^{9}$ Pa \\
+Centro de uma estrela de nêutrons & da ordem de $10^{34}$ Pa \\
+Garganta de 10 m & $5\times10^{40}$ Pa \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+A tensão exigida é cerca de um milhão de vezes a pressão no centro de uma estrela de nêutrons. Como
+$\tau \propto 1/b_0^2$, gargantas maiores exigem tensão menor, mas espalhada por uma área maior.
+
+\textbf{Onde achar energia negativa?} Os autores apontam que a teoria quântica de campos permite densidades de energia
+negativas em situações especiais, e citam o \textbf{efeito Casimir}: entre duas placas metálicas muito próximas, a
+energia do vácuo quântico é menor que fora delas. É por isso que o artigo de Lamoreaux (1997), que mediu esse efeito,
+está no seu \texttt{.bib}. A esperança era usar algo assim para sustentar a garganta.
+
+% ---------------------------------------------------------------------------
+\section{A viagem: marés, aceleração e tempo}
+
+Uma vez garantido que o túnel existe, os autores fazem as contas do conforto do viajante. Elas mostram como cada
+função da métrica afeta o corpo humano.
+
+\textbf{Gravidade sentida por quem está parado.} Uma estação imóvel no raio $r$ precisa de uma aceleração (de
+foguete) para não cair:
+\begin{equation*}
+g(r) = c^2\,\sqrt{1 - \frac{b}{r}}\;\Phi'(r)
+\end{equation*}
+Se $\Phi' = 0$, a gravidade é \textbf{zero}: o viajante pode flutuar parado em qualquer ponto do túnel, inclusive na
+garganta. Note que a forma $b(r)$ não entra aqui, só $\Phi$. Um túnel curvo não precisa ``puxar'' ninguém.
+
+\textbf{Forças de maré.} É a diferença de aceleração entre a cabeça e os pés (ou entre os ombros). É o que
+``espaguetifica'' quem cai num buraco negro. Os autores exigem que essa diferença seja no máximo $1\,g$
+($9{,}8$\,m/s$^2$) para um corpo de cerca de 2\,m.
+\begin{itemize}[nosep]
+\item \textbf{Maré radial} (ao longo do túnel): depende só de $\Phi$ e de suas derivadas. Se $\Phi$ é constante, ela é
+\textbf{zero}.
+\item \textbf{Maré lateral} (de lado): depende da forma e da \textbf{velocidade} do viajante. Com $\Phi$ constante, na
+garganta, ela vale:
+\end{itemize}
+\begin{equation*}
+|\Delta a_{\text{lateral}}| = \frac{\gamma^2 v^2}{2\,b_0^2}\,\left|1 - b'(b_0)\right|\,\xi \;\le\; g_{\text{Terra}}
+\end{equation*}
+onde $\xi \approx 2$\,m é o tamanho do corpo. Por que a velocidade importa? Porque para quem se move rápido o túnel
+parece mais curvo: o fator $\gamma^2 v^2$ aumenta a maré.
+
+\textbf{Um exemplo numérico.} Com $b'(b_0) = -1$ (o caso da seção~\ref{sec:exemplo}), $\xi = 2$\,m e $v \ll c$, a
+condição fica $v^2 \cdot 2 \cdot 2\,\text{m}/(2 b_0^2) \le 9{,}8$\,m/s$^2$, ou seja,
+$v \lesssim 2{,}2\times b_0$ por segundo. Para uma garganta de 10\,m, a travessia deve ser feita a no máximo uns
+22\,m/s (80\,km/h). Para uma garganta de 1\,km, até 2,2\,km/s. \textbf{Gargantas maiores são mais confortáveis}, e
+também exigem tensão menor (seção~\ref{sec:exotica}).
+
+\textbf{Tempo de viagem.} O tempo que o viajante mede (tempo próprio) e o tempo das estações nas duas bocas são
+integrais ao longo do caminho:
+\begin{equation*}
+\Delta\tau_{\text{viajante}} = \int \frac{dl}{v\,\gamma} \qquad\qquad
+\Delta t_{\text{estação}} = \int \frac{dl}{v\,e^{\Phi}}
+\end{equation*}
+Com $\Phi = 0$ e $v \ll c$, os dois coincidem: a viagem dura para o viajante o mesmo que para quem fica. Os autores
+mostram que é possível cumprir todos os requisitos de conforto com uma viagem de menos de um ano. O ponto importante:
+\textbf{o atalho não vem de andar rápido, vem da geometria}. As duas bocas podem estar a anos-luz de distância pelo
+espaço comum e a poucos metros pelo túnel.
+
+% ---------------------------------------------------------------------------
+\section{O exemplo mais simples, com todas as contas}
+\label{sec:exemplo}
+
+O exemplo mais simples do artigo escolhe:
+\begin{equation*}
+\Phi(r) = 0 \qquad\qquad b(r) = \frac{b_0^2}{r}
+\end{equation*}
+Essa geometria também é conhecida como buraco de minhoca de Ellis, que a encontrou em 1973 por outro caminho. Vamos
+conferir cada requisito, passo a passo. É um ótimo exercício para fazer à mão.
+
+\textbf{Passo 1: garganta e abertura.} $b(b_0) = b_0^2/b_0 = b_0$, então a garganta está em $r = b_0$. A derivada é
+$b' = -b_0^2/r^2$, e na garganta $b'(b_0) = -1 < 1$. A condição de abertura está satisfeita.
+
+\textbf{Passo 2: sem horizonte e espaço plano longe.} $\Phi = 0$ é finito em todo lugar, então não há horizonte. E
+$b/r = b_0^2/r^2 \to 0$ quando $r \to \infty$.
+
+\textbf{Passo 3: distância própria.} A integral da seção 3 sai em forma fechada:
+\begin{equation*}
+l = \int_{b_0}^{r} \frac{dr'}{\sqrt{1 - b_0^2/r'^2}} = \sqrt{r^2 - b_0^2} \quad\Longrightarrow\quad r^2 = l^2 + b_0^2
+\end{equation*}
+Com isso a métrica fica bonita e sem nenhuma singularidade aparente, valendo para $-\infty < l < +\infty$:
+\begin{equation}
+ds^2 = -c^2\,dt^2 + dl^2 + \left(l^2 + b_0^2\right)\left(d\theta^2 + \sin^2\theta\,d\phi^2\right)
+\end{equation}
+Leia assim: andando na direção $l$, as esferas em volta têm raio $\sqrt{l^2 + b_0^2}$. Elas encolhem até $b_0$ em
+$l = 0$ e voltam a crescer do outro lado.
+
+\textbf{Passo 4: forma do funil.} Integrando $dz/dr = (r^2/b_0^2 - 1)^{-1/2}$:
+\begin{equation*}
+z(r) = \pm\, b_0\,\operatorname{arccosh}\!\left(\frac{r}{b_0}\right) \quad\Longleftrightarrow\quad
+r = b_0 \cosh\!\left(\frac{z}{b_0}\right)
+\end{equation*}
+Essa superfície é um \textbf{catenóide}, a mesma forma de uma película de sabão esticada entre dois aros. É ela que a
+simulação desenha.
+
+\textbf{Passo 5: a matéria necessária.} Com $\Phi' = 0$, as equações \eqref{eq:rho}--\eqref{eq:p} ficam simples.
+Chamando $\varepsilon(r) = c^4 b_0^2/(8\pi G\, r^4)$:
+\begin{equation}
+\rho c^2 = -\varepsilon(r) \qquad \tau = +\varepsilon(r) \qquad p = +\varepsilon(r)
+\end{equation}
+A conta de $p$: $\tau' = -4\tau/r$, então $p = -(r/2)\tau' - \tau = 2\tau - \tau = \tau$. O resultado é surpreendente:
+neste exemplo \textbf{a densidade de energia é negativa em todo o espaço}, não só na garganta. Ela cai como $1/r^4$,
+então fica concentrada perto da garganta, mas nunca zera. A matéria exótica envolve o túnel inteiro.
+
+\textbf{Passo 6: conforto.} Com $\Phi = 0$, gravidade zero e maré radial zero. Só sobra a maré lateral, que limita a
+velocidade de travessia (seção 7).
+
+\textbf{Passo 7: luz e partículas.} Este passo não está no artigo, mas é o que a simulação mostra. Para um raio de luz
+no plano do equador, a energia $E$ e o momento angular $L$ se conservam. Definindo o parâmetro de impacto
+$\beta = Lc/E$ (a ``distância de mira'' do raio em relação ao centro), a equação do movimento é:
+\begin{equation}
+\left(\frac{dl}{d\lambda}\right)^2 = 1 - \frac{\beta^2}{l^2 + b_0^2} \qquad\qquad
+\frac{d\phi}{d\lambda} = \frac{\beta}{l^2 + b_0^2}
+\end{equation}
+O termo $\beta^2/(l^2 + b_0^2)$ funciona como uma ``barreira'' com o máximo na garganta. Daí sai uma regra limpa:
+\begin{itemize}[nosep]
+\item $\beta < b_0$: o raio passa pela garganta e sai no outro universo;
+\item $\beta > b_0$: o raio é desviado e volta para o mesmo lado;
+\item $\beta = b_0$: o raio fica girando em volta da garganta, numa órbita instável.
+\end{itemize}
+
+% ---------------------------------------------------------------------------
+\section{O que ficou em aberto e onde isso leva}
+
+O artigo é honesto sobre o que \textbf{não} resolve. Cada pergunta deixada em aberto virou uma linha de pesquisa, e
+várias delas estão no seu \texttt{.bib}.
+
+\begin{center}
+\small
+\begin{tabularx}{\linewidth}{>{\raggedright\arraybackslash}p{3.8cm} Y >{\raggedright\arraybackslash}p{3.0cm}}
+\toprule
+Pergunta em aberto & O que veio depois & No seu \texttt{.bib} \\
+\midrule
+A matéria exótica existe? & O efeito Casimir foi medido com precisão em laboratório: energia negativa existe, em quantidades minúsculas & Lamoreaux1997 \\
+Quanta energia negativa a natureza permite, e por quanto tempo? & As desigualdades quânticas limitam fortemente a energia negativa: quanto mais intensa, mais curta e mais localizada ela tem que ser & FordRoman1995, PfenningFord1997, Krasnikov2003 \\
+O mesmo método funciona para viajar mais rápido que a luz sem túnel? & Alcubierre aplica a mesma engenharia reversa e cria a bolha de dobra, que também exige energia negativa & Alcubierre1994 e seguintes \\
+Toda viagem superluminal exige energia negativa? & Olum prova que sim, em geral & Olum1998 \\
+Um túnel pode virar máquina do tempo? & Logo depois, Morris, Thorne e Yurtsever mostraram que mover uma das bocas transforma o túnel em máquina do tempo. Hawking respondeu com a conjectura de proteção cronológica & Hawking1992, Everett1996 \\
+Dá para reduzir a matéria exótica? & Visser e outros mostraram túneis com a matéria exótica concentrada numa casca fina na garganta (o livro \emph{Lorentzian Wormholes} do plano) & Ano 3 do plano \\
+O túnel é estável? Como construí-lo? & Ainda são perguntas abertas & (pesquisa atual) \\
+\bottomrule
+\end{tabularx}
+\end{center}
+
+\textbf{O que o autor quis mostrar, em resumo:}
+\begin{enumerate}
+\item A Relatividade Geral, sozinha, \textbf{não proíbe} atalhos atravessáveis no espaço-tempo.
+\item O preço é sempre o mesmo e é inevitável: \textbf{violar a condição de energia nula} na garganta. Essa conclusão
+vem da geometria (abertura da garganta), não de uma escolha particular.
+\item Portanto a pergunta sobre buracos de minhoca deixa de ser de Relatividade Geral e passa a ser de \textbf{física
+quântica}: a natureza permite energia negativa suficiente?
+\item E, de quebra, o problema é um ótimo exercício para aprender Relatividade Geral: métrica, coordenadas, imersão,
+tensor de Einstein, referenciais ortonormais e condições de energia, tudo num exemplo concreto.
+\end{enumerate}
+
+% ---------------------------------------------------------------------------
+\section{A simulação em Python}
+
+A simulação está em \texttt{artigos/1988-morris-thorne/codigo/} e reproduz o exemplo da seção~\ref{sec:exemplo}. Para
+rodar, dentro dessa pasta:
+\begin{center}
+\texttt{uv run main.py}
+\end{center}
+Na primeira vez o uv cria o ambiente e instala o pygame sozinho. O comando \texttt{uv run fisica.py} roda um autoteste
+da física sem abrir janela.
+
+\textbf{O que aparece na tela:}
+\begin{itemize}[nosep]
+\item \textbf{Esquerda:} o funil (catenóide) da seção 4 em 3D, com raios de luz andando sobre a superfície. Azul é o
+universo de cima, laranja o de baixo, verde a garganta.
+\item \textbf{Direita, em cima:} o potencial efetivo $V(l) = \beta^2/(l^2 + b_0^2)$ do passo 7. Cada fóton fica sobre
+a linha branca (energia 1). Se a curva passa da linha, ele bate e volta.
+\item \textbf{Direita, embaixo:} $\rho c^2$ e $\tau$ do passo 5. A curva vermelha negativa é a matéria exótica.
+\end{itemize}
+
+\textbf{Experimentos, nesta ordem:}
+\begin{enumerate}[nosep]
+\item Dispare raios com $\beta = 0{,}9$ e $\beta = 1{,}1$ (setas $\uparrow\downarrow$ e espaço). Um atravessa, o outro
+volta. Explique pelo gráfico do potencial.
+\item Coloque $\beta = 1{,}00$. O raio gira em volta da garganta e depois escapa para um dos lados: a órbita é instável.
+\item Aperte F para um leque de raios saindo do mesmo ponto. A garganta age como uma lente.
+\item Abra \texttt{fisica.py} e confira que as fórmulas do código são as mesmas das seções 3, 4, 5 e 8.
+\end{enumerate}
+
+\textbf{Próximo passo sugerido:} escreva o seu \texttt{fichamento.tex} com as próprias palavras, sem olhar este
+documento, e só depois compare.
+
+\end{document}

@@ -6,6 +6,12 @@
 - **Tema:** Buraco de minhoca atravessável
 - **Ano de estudo no plano:** Ano 1 e 2
 
+## Explicação detalhada
+
+- [`explicacao.pdf`](explicacao.pdf): cópia offline com as equações formatadas (fonte em `explicacao.tex`, compile com `xelatex`)
+- [Morris & Thorne (1988) explicado](https://claude.ai/artifact/Xs89oRUSTv5SQL2EYnR3Xc): contexto, métrica, imersão, equações de Einstein, matéria exótica, viagem e exemplo resolvido
+- Simulação interativa: [`codigo/`](codigo/) (`uv run main.py`)
+
 ## Onde ler
 
 - DOI: https://doi.org/10.1119/1.15620
@@ -25,4 +31,4 @@ Salve o PDF do artigo nesta pasta como `artigo.pdf`.
 - [ ] Lido pela primeira vez
 - [ ] Contas refeitas
 - [ ] Fichamento escrito
-- [ ] Resultado reproduzido em Python
+- [x] Resultado reproduzido em Python (simulação em `codigo/`)

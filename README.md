@@ -16,7 +16,8 @@ O projeto acompanha a literatura na ordem em que ela foi construída: das métri
 .
 ├── README.md
 ├── LICENSE                     # MIT (código)
-├── requirements.txt            # dependências Python
+├── pyproject.toml              # dependências Python (um ambiente para todo o projeto)
+├── uv.lock                     # versões exatas instaladas
 ├── referencias.bib             # bibliografia completa (24 referências)
 ├── plano-de-estudo.pdf         # plano de 6 anos
 ├── o-que-estudar.pdf           # pré-requisitos de matemática, física e computação
@@ -37,13 +38,22 @@ O projeto acompanha a literatura na ordem em que ela foi construída: das métri
 
 ## Como usar
 
-**Ambiente Python**
+**Ambiente Python (uma vez só, na raiz)**
+
+O projeto usa o [uv](https://docs.astral.sh/uv/). Existe **um único ambiente** na raiz, compartilhado por todas as simulações: pygame, NumPy, SciPy, Matplotlib e SymPy são baixados uma vez só.
 
 ```bash
-python -m venv .venv
-source .venv/bin/activate        # Windows: .venv\Scripts\activate
-pip install -r requirements.txt
+uv sync                  # cria .venv/ na raiz e instala tudo
 ```
+
+Depois, rode qualquer simulação de dentro da pasta dela; o uv encontra sozinho o ambiente da raiz:
+
+```bash
+cd artigos/1988-morris-thorne/codigo
+uv run main.py
+```
+
+Para adicionar uma biblioteca nova ao projeto inteiro: `uv add nome-da-biblioteca` (na raiz).
 
 **Compilar um fichamento**
 
